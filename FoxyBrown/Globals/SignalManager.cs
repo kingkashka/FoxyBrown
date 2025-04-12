@@ -23,21 +23,22 @@ public partial class SignalManager : Node
 
     [Signal]
     public delegate void OnScoreUpdatedEventHandler();
-    
+
     [Signal]
     public delegate void OnCreateObjectEventHandler(Vector2 position, int gameObjectType);
-    
+
     [Signal]
     public delegate void OnCreateBulletEventHandler(Vector2 position, Vector2 direction, float speed, float lifeSpan, int gameObjectType);
 
-    
-    
+
+
     public static SignalManager Instance { get; private set; }
-	
-    public override void _Ready()
-	{
+
+    public override void _EnterTree()
+    {
         Instance = this;
     }
+
 
     public static void EmitOnEnemyHit(int points, Vector2 enemyPosition)
     {

@@ -37,6 +37,7 @@ public partial class SoundManager : Node
     
     public static SoundManager Instance { get; private set; }
 	
+
     public override void _Ready()
 	{
         Instance = this;

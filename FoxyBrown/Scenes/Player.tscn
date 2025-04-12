@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://cg5gucdgx3yx0"]
+
+[ext_resource type="Script" uid="uid://c771pwygqtxl6" path="res://Scenes/Player.cs" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://h666sjhqg1wh" path="res://assets/player/player.png" id="1_rpqav"]
+[ext_resource type="AudioStream" uid="uid://dvlxuo74b6qp3" path="res://assets/sound/jump.wav" id="3_gntrk"]
+
+[sub_resource type="Animation" id="Animation_rpqav"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_kyqiw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
+[sub_resource type="Animation" id="Animation_gntrk"]
+resource_name = "Run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101136, 0.200991, 0.299566),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_dewec"]
+resource_name = "Jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
+[sub_resource type="Animation" id="Animation_5ixxa"]
+resource_name = "Fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_nn08x"]
+resource_name = "Hurt"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101136),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gntrk"]
+_data = {
+&"Fall": SubResource("Animation_5ixxa"),
+&"Hurt": SubResource("Animation_nn08x"),
+&"Idle": SubResource("Animation_rpqav"),
+&"Jump": SubResource("Animation_dewec"),
+&"RESET": SubResource("Animation_kyqiw"),
+&"Run": SubResource("Animation_gntrk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
+size = Vector2(13, 19)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterSprite", "jumpSound")]
+script = ExtResource("1_kyqiw")
+characterSprite = NodePath("Sprite2D")
+jumpSound = NodePath("Sound")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rpqav")
+hframes = 19
+frame = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gntrk")
+}
+autoplay = "Idle"
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gntrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_kyqiw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -29.0
+offset_right = 22.0
+offset_bottom = -6.0
+text = "hello"
+horizontal_alignment = 1
