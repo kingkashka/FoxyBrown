@@ -29,6 +29,10 @@ project/assembly_name="FoxyBrown"
 
 naming/scene_name_casing=1
 
+[global_group]
+
+Moveables=""
+
 [input]
 
 jump={

@@ -4,6 +4,39 @@
 [ext_resource type="Texture2D" uid="uid://h666sjhqg1wh" path="res://assets/player/player.png" id="1_rpqav"]
 [ext_resource type="AudioStream" uid="uid://dvlxuo74b6qp3" path="res://assets/sound/jump.wav" id="3_gntrk"]
 
+[sub_resource type="Animation" id="Animation_5ixxa"]
+resource_name = "Fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_nn08x"]
+resource_name = "Hurt"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101136),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [11, 12]
+}
+
 [sub_resource type="Animation" id="Animation_rpqav"]
 resource_name = "Idle"
 length = 0.4
@@ -19,6 +52,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_dewec"]
+resource_name = "Jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
 }
 
 [sub_resource type="Animation" id="Animation_kyqiw"]
@@ -53,55 +102,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_dewec"]
-resource_name = "Jump"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [17]
-}
-
-[sub_resource type="Animation" id="Animation_5ixxa"]
-resource_name = "Fall"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [18]
-}
-
-[sub_resource type="Animation" id="Animation_nn08x"]
-resource_name = "Hurt"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.101136),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [11, 12]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gntrk"]
 _data = {
 &"Fall": SubResource("Animation_5ixxa"),
@@ -115,10 +115,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
 size = Vector2(13, 19)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterSprite", "jumpSound")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("debugLabel", "characterSprite", "jumpSound", "animationPlayer") groups=["player"]]
 script = ExtResource("1_kyqiw")
+debugLabel = NodePath("DebugLabel")
 characterSprite = NodePath("Sprite2D")
 jumpSound = NodePath("Sound")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rpqav")
@@ -129,7 +131,6 @@ frame = 14
 libraries = {
 &"": SubResource("AnimationLibrary_gntrk")
 }
-autoplay = "Idle"
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_gntrk")
@@ -138,10 +139,10 @@ stream = ExtResource("3_gntrk")
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_kyqiw")
 
-[node name="Label" type="Label" parent="."]
+[node name="DebugLabel" type="Label" parent="."]
 offset_left = -17.0
-offset_top = -29.0
+offset_top = -84.0
 offset_right = 22.0
-offset_bottom = -6.0
+offset_bottom = -61.0
 text = "hello"
 horizontal_alignment = 1
