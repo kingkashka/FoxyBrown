@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class EnemyBase : CharacterBody2D
 {
 	[Export] private int points = 1;
-	[Export] private float speed = 30.0f;
+	[Export] protected float speed = 20.0f;
 	[Export] private float yFallOff = 100.0f;
 	protected float gravity = 800.0F;
 
@@ -33,15 +34,15 @@ public partial class EnemyBase : CharacterBody2D
 			QueueFree();
 		}
 	}
-    private void OnScreenEntered()
+    protected virtual void OnScreenEntered()
     {
-        throw new NotImplementedException();
+       
     }
 
 
-    private void OnScreenExited()
+    protected virtual void OnScreenExited()
     {
-        throw new NotImplementedException();
+       
     }
 
 

@@ -88,7 +88,7 @@ public partial class Player : CharacterBody2D
 		{
 			newVelocity.Y = jumpVelocity;
 			// SoundManager.PlayClip(jumpSound, SoundManager.SOUND_JUMP);
-			jumpSound.Play();
+			// jumpSound.Play();
 		}
 		newVelocity.Y = Mathf.Clamp(newVelocity.Y, jumpVelocity, maxFall);
 		#endregion
@@ -125,16 +125,16 @@ public partial class Player : CharacterBody2D
 				newState = PlayerState.Idle;
 			}
 		}
-		if(Input.IsActionJustPressed("Dash"))
-		{
-			float newVelocityX = Velocity.X;
-			newState = PlayerState.Dashing;
-			newVelocityX *= 2;
-			// gravity = 0;
+		// if(Input.IsActionJustPressed("Dash"))
+		// {
+		// 	float newVelocityX = Velocity.X;
+		// 	newState = PlayerState.Dashing;
+		// 	newVelocityX *= 2;
+		// 	// gravity = 0;
 
-			// SoundManager.PlayClip(jumpSound, SoundManager.SOUND_JUMP)
+		// 	// SoundManager.PlayClip(jumpSound, SoundManager.SOUND_JUMP)
 
-		}
+		// }
 		SetState(newState);
 	}
 	private void Dashing()

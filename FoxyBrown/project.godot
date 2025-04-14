@@ -72,6 +72,14 @@ reload={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="platforms"
+2d_physics/layer_2="playerHitBox"
+2d_physics/layer_3="enemyHitBox"
+2d_physics/layer_4="playerBullet"
+2d_physics/layer_5="enemyBullet"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
