@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cg5gucdgx3yx0"]
+[gd_scene load_steps=13 format=3 uid="uid://cg5gucdgx3yx0"]
 
 [ext_resource type="Script" uid="uid://c771pwygqtxl6" path="res://Scenes/Player.cs" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://h666sjhqg1wh" path="res://assets/player/player.png" id="1_rpqav"]
@@ -115,7 +115,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
 size = Vector2(13, 19)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("debugLabel", "characterSprite", "jumpSound", "animationPlayer") groups=["player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gntrk"]
+radius = 6.0
+height = 22.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("debugLabel", "characterSprite", "jumpSound", "animationPlayer") groups=["Player"]]
 script = ExtResource("1_kyqiw")
 debugLabel = NodePath("DebugLabel")
 characterSprite = NodePath("Sprite2D")
@@ -146,3 +150,11 @@ offset_right = 22.0
 offset_bottom = -61.0
 text = "hello"
 horizontal_alignment = 1
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_gntrk")

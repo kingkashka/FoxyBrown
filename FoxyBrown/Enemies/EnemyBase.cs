@@ -14,10 +14,18 @@ public partial class EnemyBase : CharacterBody2D
 
 	[Export] protected Area2D hitBox;
 
-	protected Player playerRef;
+	protected static Player playerReference;
 	public override void _Ready()
 	{
-		playerRef = GetTree().GetFirstNodeInGroup(Player.GroupName) as Player;
+		playerReference = GetTree().GetFirstNodeInGroup("Player") as Player;
+		if(playerReference == null)
+		{
+			GD.PrintErr("Player not found");
+		}
+		else
+		{
+			GD.Print("Player found");
+		}
 		visibleOnScreenNotifier2D.ScreenEntered += OnScreenEntered;
 		visibleOnScreenNotifier2D.ScreenExited += OnScreenExited;
 		hitBox.AreaEntered += OnHitBoxAreaEntered;

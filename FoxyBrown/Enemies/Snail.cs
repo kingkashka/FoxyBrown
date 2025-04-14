@@ -28,6 +28,7 @@ public partial class Snail : EnemyBase
 
 	private void FlipMe()
 	{
+		
 		if(IsOnFloor() && IsOnWall() || !floorRayCast.IsColliding())
 		{
 			animatedSprite.FlipH = !animatedSprite.FlipH;

@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Jump",
-"speed": 2.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aij6o"]
@@ -71,13 +71,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tludw"]
 size = Vector2(19, 12)
 
-[node name="Frog" instance=ExtResource("1_aij6o")]
+[node name="Frog" node_paths=PackedStringArray("jumpTimer") instance=ExtResource("1_aij6o")]
 script = ExtResource("2_bl3hx")
+jumpTimer = NodePath("JumpTimer")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_0hems")
-animation = &"Idle"
+animation = &"Jump"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -89,4 +90,3 @@ position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_tludw")
 
 [node name="JumpTimer" type="Timer" parent="." index="4"]
-one_shot = true

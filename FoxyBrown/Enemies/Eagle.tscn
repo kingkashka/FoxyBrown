@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxgrab0askkjw"]
+
+[ext_resource type="PackedScene" uid="uid://da37sraty1e2q" path="res://Enemies/EnemyBase.tscn" id="1_8vn48"]
+[ext_resource type="Script" uid="uid://c8c6af8anfg1c" path="res://Enemies/Eagle.cs" id="2_8ffcd"]
+[ext_resource type="Texture2D" uid="uid://dh3hp8e0ijphf" path="res://assets/enemies/eagle/eagle-attack.png" id="2_pqvn1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ffcd"]
+atlas = ExtResource("2_pqvn1")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpmcc"]
+atlas = ExtResource("2_pqvn1")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5elp"]
+atlas = ExtResource("2_pqvn1")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_recss"]
+atlas = ExtResource("2_pqvn1")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3b8gc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ffcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpmcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5elp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_recss")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpmcc"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o5elp"]
+radius = 6.0
+
+[node name="Eagle" instance=ExtResource("1_8vn48")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_8ffcd")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.85, 0.85)
+sprite_frames = SubResource("SpriteFrames_3b8gc")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 2
+frame_progress = 0.739741
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-3, 6)
+shape = SubResource("CircleShape2D_tpmcc")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-3, 5)
+shape = SubResource("CircleShape2D_o5elp")
+
+[node name="DirectionTimer" type="Timer" parent="." index="4"]
+
+[node name="PlayerDetect" type="RayCast2D" parent="." index="5"]
+target_position = Vector2(0, 150)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
