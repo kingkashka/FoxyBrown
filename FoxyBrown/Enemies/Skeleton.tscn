@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://gf6kr2ko4gpc"]
+[gd_scene load_steps=53 format=3 uid="uid://gf6kr2ko4gpc"]
 
 [ext_resource type="PackedScene" uid="uid://da37sraty1e2q" path="res://Enemies/EnemyBase.tscn" id="1_h40n0"]
 [ext_resource type="Texture2D" uid="uid://dsa2fs3h6klcp" path="res://assets/enemies/skeleton/enemies-skeleton1_attack.png" id="2_3iep6"]
@@ -331,13 +331,22 @@ height = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htx7f"]
 size = Vector2(11, 14.75)
 
-[node name="Skeleton" instance=ExtResource("1_h40n0")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iep6"]
+radius = 5.0
+
+[node name="Skeleton" node_paths=PackedStringArray("AttackRayCast", "floorRayCast", "attackTimer", "attackArea") instance=ExtResource("1_h40n0")]
 script = ExtResource("2_u46mg")
+AttackRayCast = NodePath("AttackCast")
+floorRayCast = NodePath("FloorCast")
+attackTimer = NodePath("AttackTimer")
+attackArea = NodePath("AttackBox")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_psnwf")
-animation = &"Idle"
+animation = &"Movement"
 autoplay = "Idle"
+frame_progress = 0.157938
 offset = Vector2(3, -5)
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -347,5 +356,18 @@ shape = SubResource("CapsuleShape2D_obhci")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_htx7f")
 
-[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
-position = Vector2(10, 0)
+[node name="AttackCast" type="RayCast2D" parent="." index="4"]
+rotation = -1.5708
+target_position = Vector2(0, 30)
+
+[node name="FloorCast" type="RayCast2D" parent="." index="5"]
+position = Vector2(15, 0)
+
+[node name="AttackBox" type="Area2D" parent="." index="6"]
+position = Vector2(20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox" index="0"]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_3iep6")
+
+[node name="AttackTimer" type="Timer" parent="." index="7"]

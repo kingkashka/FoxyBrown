@@ -3,36 +3,25 @@ using System;
 
 public partial class SignalManager : Node
 {
-    [Signal]
-    public delegate void OnEnemyHitEventHandler(int points, Vector2 enemyPosition);
+    [Signal] public delegate void OnEnemyHitEventHandler(int points, Vector2 enemyPosition);
 
-    [Signal]
-    public delegate void OnPickupHitEventHandler(int points);
+    [Signal] public delegate void OnPickupHitEventHandler(int points);
 
-    [Signal]
-    public delegate void OnBossKilledEventHandler(int points);
+    [Signal] public delegate void OnBossKilledEventHandler(int points);
 
-    [Signal]
-    public delegate void OnPlayerHitEventHandler(int lives);
+    [Signal] public delegate void OnPlayerHitEventHandler(int lives);
 
-    [Signal]
-    public delegate void OnLevelCompleteEventHandler();
+    [Signal] public delegate void OnLevelCompleteEventHandler();
 
-    [Signal]
-    public delegate void OnGameOverEventHandler();
+    [Signal] public delegate void OnGameOverEventHandler();
 
-    [Signal]
-    public delegate void OnScoreUpdatedEventHandler();
+    [Signal] public delegate void OnScoreUpdatedEventHandler();
 
-    [Signal]
-    public delegate void OnCreateObjectEventHandler(Vector2 position, int gameObjectType);
+    [Signal] public delegate void OnCreateObjectEventHandler(Vector2 position, int gameObjectType);
 
-    [Signal]
-    public delegate void OnCreateBulletEventHandler(Vector2 position, Vector2 direction, float speed, float lifeSpan, int gameObjectType);
+    [Signal] public delegate void OnCreateBulletEventHandler(Vector2 position, Vector2 direction, float speed, float lifeSpan, int gameObjectType);
 
-
-
-    public static SignalManager Instance { get; private set; }
+    public static SignalManager Instance { get; set; }
 
     public override void _EnterTree()
     {

@@ -36,7 +36,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_recss")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Fly",
 "speed": 4.0
 }]
 
@@ -46,18 +46,17 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_o5elp"]
 radius = 6.0
 
-[node name="Eagle" instance=ExtResource("1_8vn48")]
+[node name="Eagle" node_paths=PackedStringArray("directionTimer") instance=ExtResource("1_8vn48")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_8ffcd")
+directionTimer = NodePath("DirectionTimer")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_3b8gc")
-animation = &"Idle"
-autoplay = "Idle"
-frame = 2
-frame_progress = 0.739741
+animation = &"Fly"
+autoplay = "Fly"
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(-3, 6)
@@ -68,6 +67,7 @@ position = Vector2(-3, 5)
 shape = SubResource("CircleShape2D_o5elp")
 
 [node name="DirectionTimer" type="Timer" parent="." index="4"]
+wait_time = 2.0
 
 [node name="PlayerDetect" type="RayCast2D" parent="." index="5"]
 target_position = Vector2(0, 150)
