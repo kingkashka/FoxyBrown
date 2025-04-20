@@ -18,6 +18,7 @@ public partial class Player : CharacterBody2D
 	[Export] private AudioStreamPlayer2D jumpSound;
 	[Export] private AnimationPlayer animationPlayer;
 	[Export] private Timer dashTimer;
+	[Export] private Shooter shooterNode;
 	 
 
 	#endregion
@@ -44,6 +45,7 @@ public partial class Player : CharacterBody2D
 		Velocity = GetInput((float)delta);
 		MoveAndSlide();
 		DetermineState();
+		Shoot();
 		UpdateDebugLabel();
 		FallenOff();
 	}
@@ -174,6 +176,20 @@ public partial class Player : CharacterBody2D
 				break;
 		}
 
+	}
+	private void Shoot()
+	{
+		if(Input.IsActionJustPressed("shoot"))
+		{
+			shooterNode.Shoot(characterSprite.FlipH ? Vector2.Left : Vector2.Right);
+			// SignalManager.EmitOnCreateBullet(GlobalPosition, direction, speed, lifeSpan, (int)bulletKey);
+			// SoundManager.PlayClip(sound, SoundManager.SOUND_LASER);
+			GD.Print("Shoot");
+		}
+		else
+		{
+			return;
+		}
 	}
 
 }

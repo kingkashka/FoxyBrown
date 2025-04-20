@@ -121,9 +121,10 @@ animations = [{
 "speed": 14.0
 }]
 
-[node name="Shekel" type="Area2D" node_paths=PackedStringArray("ShekelSound")]
+[node name="Shekel(Gold)" type="Area2D" node_paths=PackedStringArray("ShekelSound", "ShekelTimer")]
 script = ExtResource("1_m66hr")
 ShekelSound = NodePath("AudioStreamPlayer2D")
+ShekelTimer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -144,3 +145,8 @@ sprite_frames = SubResource("SpriteFrames_ejy34")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.164262
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true

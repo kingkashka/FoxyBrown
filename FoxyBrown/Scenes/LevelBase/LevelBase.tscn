@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://dsgumqe31dusl"]
+[gd_scene load_steps=11 format=4 uid="uid://dsgumqe31dusl"]
 
 [ext_resource type="Script" uid="uid://b4etqrfiposd3" path="res://Scenes/LevelBase/LevelBase.cs" id="1_5ufo3"]
 [ext_resource type="Texture2D" uid="uid://nd7cqs35641n" path="res://assets/tiles/Terrain (16x16).png" id="2_bgw71"]
 [ext_resource type="PackedScene" uid="uid://cg5gucdgx3yx0" path="res://Scenes/Player.tscn" id="3_78m1b"]
 [ext_resource type="PackedScene" uid="uid://boclcyfvol0ll" path="res://Scenes/ObjectMaker.tscn" id="5_lmtt4"]
+[ext_resource type="PackedScene" uid="uid://chqcj6p302yam" path="res://Enemies/Snail.tscn" id="5_ooqsx"]
+[ext_resource type="PackedScene" uid="uid://blqvhf80n5aan" path="res://Scenes/Shekel.tscn" id="6_ooqsx"]
+[ext_resource type="PackedScene" uid="uid://1wp6h2dhqxjf" path="res://Scenes/FruitPickups/FruitPickup.tscn" id="7_txgif"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bgw71"]
 tile_data = PackedInt32Array(131072, 458752, 1, 196609, 458752, 1, 131074, 458752, 1, 196610, 458752, 1, 262146, 458752, 1, 131075, 458752, 1, 262147, 458752, 1, 262148, 458752, 1, 262149, 458752, 1, 262150, 458752, 1, 7, 458752, 1, 65543, 458752, 1, 131079, 458752, 1, 196615, 458752, 1, 262151, 458752, 1, 8, 458752, 1, 9, 458752, 1, 65545, 458752, 1, 131081, 458752, 1, 10, 458752, 1, 65546, 458752, 1, 131082, 458752, 1, 196618, 458752, 1, 11, 458752, 1, 65547, 458752, 1, 131083, 458752, 1, 196619, 458752, 1, 12, 458752, 1, 65548, 458752, 1, 131084, 458752, 1, 196620, 458752, 1, 13, 458752, 1, 65549, 458752, 1, 131085, 458752, 1)
@@ -218,3 +221,18 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="ObjectMaker" parent="." instance=ExtResource("5_lmtt4")]
+
+[node name="Snail" parent="." instance=ExtResource("5_ooqsx")]
+position = Vector2(507, -24)
+
+[node name="Shekel(Gold)" parent="." instance=ExtResource("6_ooqsx")]
+position = Vector2(306, -24)
+
+[node name="Shekel(Gold)2" parent="." instance=ExtResource("6_ooqsx")]
+position = Vector2(250, -24)
+
+[node name="Shekel(Gold)3" parent="." instance=ExtResource("6_ooqsx")]
+position = Vector2(278, -24)
+
+[node name="FruitPickup" parent="." instance=ExtResource("7_txgif")]
+position = Vector2(329, -27)

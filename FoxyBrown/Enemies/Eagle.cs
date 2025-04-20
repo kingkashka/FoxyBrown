@@ -4,23 +4,23 @@ using System;
 public partial class Eagle : EnemyBase
 {
 	[Export] private Timer directionTimer;
+	[Export] private RayCast2D PlayerDetectRayCast;
+	[Export] private Shooter shooterNode;
 	private readonly Vector2 FlySpeed = new Vector2(35, 15);
 	private Vector2 FlyDirection = Vector2.Zero;
-	// Called when the node enters the scene tree for the first time.
+	
 	public override void _Ready()
 	{
 		base._Ready();
 		directionTimer.Timeout += OnDirectionTimerTimeout;
 	}
 
-
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
 		Velocity = FlyDirection;
 		MoveAndSlide();
+		EagleShoot();
 	}
 	private void SetDirectionAndFlip()
 	{
@@ -41,5 +41,16 @@ public partial class Eagle : EnemyBase
 	{
 		animatedSprite.Play("Fly");
 		FlyToPlayer();
+	}
+	private void EagleShoot()
+	{
+		if(PlayerDetectRayCast.IsColliding())
+		{
+			shooterNode.Shoot(Vector2.Down);	
+		}	
+		else
+		{
+			return;
+		}
 	}
 }
