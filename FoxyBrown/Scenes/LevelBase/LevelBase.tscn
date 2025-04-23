@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dsgumqe31dusl"]
+[gd_scene load_steps=14 format=4 uid="uid://dsgumqe31dusl"]
 
 [ext_resource type="Script" uid="uid://b4etqrfiposd3" path="res://Scenes/LevelBase/LevelBase.cs" id="1_5ufo3"]
 [ext_resource type="Texture2D" uid="uid://nd7cqs35641n" path="res://assets/tiles/Terrain (16x16).png" id="2_bgw71"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://chqcj6p302yam" path="res://Enemies/Snail.tscn" id="5_ooqsx"]
 [ext_resource type="PackedScene" uid="uid://blqvhf80n5aan" path="res://Scenes/Shekel.tscn" id="6_ooqsx"]
 [ext_resource type="PackedScene" uid="uid://1wp6h2dhqxjf" path="res://Scenes/FruitPickups/FruitPickup.tscn" id="7_txgif"]
+[ext_resource type="PackedScene" uid="uid://dho16rplkbpch" path="res://Scenes/BallSpikes/BallSpikes.tscn" id="8_o536s"]
+[ext_resource type="PackedScene" uid="uid://dqkelbfimvw75" path="res://Scenes/BallSpikes/Spikes.tscn" id="9_dufl6"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bgw71"]
 tile_data = PackedInt32Array(131072, 458752, 1, 196609, 458752, 1, 131074, 458752, 1, 196610, 458752, 1, 262146, 458752, 1, 131075, 458752, 1, 262147, 458752, 1, 262148, 458752, 1, 262149, 458752, 1, 262150, 458752, 1, 7, 458752, 1, 65543, 458752, 1, 131079, 458752, 1, 196615, 458752, 1, 262151, 458752, 1, 8, 458752, 1, 9, 458752, 1, 65545, 458752, 1, 131081, 458752, 1, 10, 458752, 1, 65546, 458752, 1, 131082, 458752, 1, 196618, 458752, 1, 11, 458752, 1, 65547, 458752, 1, 131083, 458752, 1, 196619, 458752, 1, 12, 458752, 1, 65548, 458752, 1, 131084, 458752, 1, 196620, 458752, 1, 13, 458752, 1, 65549, 458752, 1, 131085, 458752, 1)
@@ -19,13 +21,33 @@ texture = ExtResource("2_bgw71")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
+6:0/next_alternative_id = 4
 6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0.21, 0)
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/1 = 1
+6:0/1/physics_layer_0/linear_velocity = Vector2(0.21, 0)
+6:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/1/physics_layer_0/polygon_0/one_way = true
+7:0/next_alternative_id = 2
 7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0.21, 0)
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/1 = 1
+7:0/1/physics_layer_0/linear_velocity = Vector2(0.21, 0)
+7:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/1/physics_layer_0/polygon_0/one_way = true
+8:0/next_alternative_id = 2
 8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0.21, 0)
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/1 = 1
+8:0/1/physics_layer_0/linear_velocity = Vector2(0.21, 0)
+8:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/1/physics_layer_0/polygon_0/one_way = true
 9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0.21, 0)
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:0/0 = 0
 12:0/0 = 0
 13:0/0 = 0
@@ -205,12 +227,18 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_78m1b")
 pattern_0 = SubResource("TileMapPattern_bgw71")
 
+[sub_resource type="Curve2D" id="Curve2D_dufl6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 297.115, -97.1868, 0, 0, 0, 0, 346.154, -97.1868, 0, 0, 0, 0, 297.115, -98.2265, 0, 0, 0, 0, 297.115, -97.1868)
+}
+point_count = 4
+
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_5ufo3")
 
 [node name="LevelTiles" type="TileMapLayer" parent="."]
-position = Vector2(-3, 1)
-tile_map_data = PackedByteArray("AAACAP//AAAHAAAAAAADAP//AAAHAAAAAAAEAP//AAAHAAAAAAAFAP//AAAHAAAAAAAGAP//AAAHAAAAAAAHAP//AAAHAAAAAAABAPb/AAAGAAAAAAACAPb/AAAHAAAAAAADAPb/AAAIAAAAAAAGAPj/AAAGAAAAAAAHAPj/AAAHAAAAAAAIAPj/AAAIAAAAAAANAPr/AAAGAAAAAAAOAPr/AAAHAAAAAAAPAPr/AAAIAAAAAAAIAP//AAAGAAAAAAAJAP//AAAHAAAAAAAKAP//AAAIAAAAAAAIAP7/AAAGAAAAAAAJAP7/AAAHAAAAAAAKAP7/AAAIAAAAAAALAP7/AAAGAAAAAAAMAP7/AAAHAAAAAAANAP7/AAAIAAAAAAALAP//AAAGAAAAAAAMAP//AAAHAAAAAAANAP//AAAIAAAAAAAOAP//AAAGAAAAAAAPAP//AAAHAAAAAAAQAP//AAAIAAAAAAARAP//AAAGAAAAAAASAP//AAAHAAAAAAATAP//AAAIAAAAAAAUAP//AAAGAAAAAAAVAP//AAAHAAAAAAAWAP//AAAIAAAAAAAXAP//AAAGAAAAAAAYAP//AAAHAAAAAAAZAP//AAAIAAAAAAAaAP//AAAGAAAAAAAdAP//AAAGAAAAAAAeAP//AAAHAAAAAAAfAP//AAAIAAAAAAAgAP//AAAGAAAAAAAhAP//AAAHAAAAAAAiAP//AAAIAAAAAAAjAP//AAAGAAAAAAAkAP//AAAHAAAAAAAlAP//AAAIAAAAAAAmAP//AAAGAAAAAAAnAP//AAAHAAAAAAAoAP//AAAIAAAAAAATAPz/AAAGAAAAAAAUAPz/AAAHAAAAAAAVAPz/AAAIAAAAAAAfAPv/AAAGAAAAAAAgAPv/AAAHAAAAAAAhAPv/AAAIAAAAAAAlAPj/AAAGAAAAAAAmAPj/AAAHAAAAAAAnAPj/AAAIAAAAAAApAPb/AAAGAAAAAAAqAPb/AAAHAAAAAAArAPb/AAAIAAAAAAApAP//AAAGAAAAAAAqAP//AAAHAAAAAAArAP//AAAIAAAAAAAsAP//AAAGAAAAAAAtAP//AAAHAAAAAAAuAP//AAAIAAAAAAAvAP//AAAGAAAAAAAwAP//AAAHAAAAAAAxAP//AAAIAAAAAAAhAP7/AAAHAAIAAAAhAP3/AAAHAAIAAAAhAPz/AAAHAAAAAAA=")
+position = Vector2(-4, -2)
+tile_map_data = PackedByteArray("AAACAP//AAAHAAAAAAADAP//AAAHAAAAAAAEAP//AAAHAAAAAAAFAP//AAAHAAAAAAAGAP//AAAHAAAAAAAHAP//AAAHAAAAAAABAPb/AAAGAAAAAQACAPb/AAAHAAAAAQADAPb/AAAIAAAAAQAGAPj/AAAGAAAAAQAHAPj/AAAHAAAAAQAIAPj/AAAIAAAAAQAIAP//AAAGAAAAAAAJAP//AAAHAAAAAAAKAP//AAAIAAAAAAAIAP7/AAAGAAAAAAAJAP7/AAAHAAAAAAAKAP7/AAAIAAAAAAALAP7/AAAGAAAAAAAMAP7/AAAHAAAAAAANAP7/AAAIAAAAAAALAP//AAAGAAAAAAAMAP//AAAHAAAAAAANAP//AAAIAAAAAAAOAP//AAAGAAAAAAAPAP//AAAHAAAAAAAQAP//AAAIAAAAAAARAP//AAAGAAAAAAASAP//AAAHAAAAAAATAP//AAAIAAAAAAAUAP//AAAGAAAAAAAVAP//AAAHAAAAAAAWAP//AAAIAAAAAAAXAP//AAAGAAAAAAAYAP//AAAHAAAAAAAZAP//AAAIAAAAAAAaAP//AAAGAAAAAAAdAP//AAAGAAAAAAAeAP//AAAHAAAAAAAfAP//AAAIAAAAAAAgAP//AAAGAAAAAAAhAP//AAAHAAAAAAAiAP//AAAIAAAAAAAjAP//AAAGAAAAAAAkAP//AAAHAAAAAAAlAP//AAAIAAAAAAAmAP//AAAGAAAAAAAnAP//AAAHAAAAAAAoAP//AAAIAAAAAAATAPz/AAAGAAAAAAAUAPz/AAAHAAAAAAAVAPz/AAAIAAAAAAAfAPv/AAAGAAAAAQAgAPv/AAAHAAAAAQAhAPv/AAAIAAAAAQAlAPj/AAAGAAAAAQAmAPj/AAAHAAAAAQAnAPj/AAAIAAAAAQApAPb/AAAGAAAAAAAqAPb/AAAHAAAAAAArAPb/AAAIAAAAAAApAP//AAAGAAAAAAAqAP//AAAHAAAAAAArAP//AAAIAAAAAAAsAP//AAAGAAAAAAAtAP//AAAHAAAAAAAuAP//AAAIAAAAAAAvAP//AAAGAAAAAAAwAP//AAAHAAAAAAAxAP//AAAIAAAAAAAhAP7/AAAHAAIAAAAhAP3/AAAHAAIAAAAhAPz/AAAHAAAAAAANAPn/AAAGAAAAAQAOAPn/AAAHAAAAAQAPAPn/AAAIAAAAAQA=")
 tile_set = SubResource("TileSet_3lxj6")
 
 [node name="Player" parent="." instance=ExtResource("3_78m1b")]
@@ -236,3 +264,15 @@ position = Vector2(278, -24)
 
 [node name="FruitPickup" parent="." instance=ExtResource("7_txgif")]
 position = Vector2(329, -27)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-11, 0.470451)
+scale = Vector2(1.04, 0.961761)
+curve = SubResource("Curve2D_dufl6")
+
+[node name="BallSpikes" parent="Path2D" instance=ExtResource("8_o536s")]
+position = Vector2(297.115, -97.1868)
+rotation = -0.0570805
+
+[node name="Spikes" parent="." instance=ExtResource("9_dufl6")]
+position = Vector2(350, -15)

@@ -14,12 +14,14 @@ public partial class ObjectMaker : Node2D
 
 		SignalManager.Instance.OnCreateBullet += OnCreateBullet;
 		SignalManager.Instance.OnCreateObject += OnCreateExplosion;
+		SignalManager.Instance.OnCreateObject += OnCreatePickup;
 	}
 
 	public override void _ExitTree()
 	{
 		SignalManager.Instance.OnCreateBullet -= OnCreateBullet;
 		SignalManager.Instance.OnCreateObject -= OnCreateExplosion;
+		SignalManager.Instance.OnCreateObject-= OnCreatePickup;
 	}
 
 	private void AddObject(Node node)
@@ -40,6 +42,14 @@ public partial class ObjectMaker : Node2D
 	{
 		GameObjectType goType = (GameObjectType)gameObjectType;
 		Node2D	newScene = objectScenes[goType].Instantiate<Explosion>();
+		newScene.GlobalPosition = position;
+		CallDeferred(MethodName.AddObject, newScene);
+	}
+
+	private void OnCreatePickup(Vector2 position, int gameObjectType)
+	{
+		GameObjectType goType = (GameObjectType)gameObjectType;
+		Node2D newScene = objectScenes[goType].Instantiate<FruitPickup>();
 		newScene.GlobalPosition = position;
 		CallDeferred(MethodName.AddObject, newScene);
 	}
